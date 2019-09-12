@@ -15,6 +15,7 @@ public:
     for (int j = 0; j < n; ++j)
       dp[m][j] = 0;
     int res = INF;
+    // revisit
     for (int k = m - 1; k >= 0; --k) {
       for (int j = 0; j < n; ++j) {
         for (auto i : mp[key[k]]) {
