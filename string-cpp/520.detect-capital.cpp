@@ -2,7 +2,7 @@
  * @lc app=leetcode id=520 lang=cpp
  *
  * [520] Detect Capital
- * tag : string
+ * tag : string, implementation
  */
 class Solution {
 public:
