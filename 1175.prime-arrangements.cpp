@@ -47,10 +47,38 @@
  * 
  * 
  */
-class Solution {
+class Solution
+{
 public:
-    int numPrimeArrangements(int n) {
-        
+    const int MOD = 1e9 + 7;
+    int numPrimeArrangements(int n)
+    {
+        int primes = 0;
+        for (int i = 1; i <= n; ++i)
+        {
+            primes += isPrime(i);
+        }
+        long ans = 1;
+        for (int i = 2; i <= primes; ++i)
+            ans = (ans * i) % MOD;
+        for (int i = 2; i <= n - primes; ++i)
+            ans = (ans * i) % MOD;
+        return ans;
+    }
+
+    bool isPrime(int n)
+    {
+        if (n == 1)
+            return false;
+        if (n == 2)
+            return true;
+        if (n % 2 == 0)
+            return false;
+        for (int i = 3; i * i <= n; i += 2)
+        {
+            if (n % i == 0)
+                return false;
+        }
+        return true;
     }
 };
-

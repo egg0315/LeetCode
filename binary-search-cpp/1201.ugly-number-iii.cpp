@@ -59,10 +59,29 @@
  * 
  * 
  */
-class Solution {
+class Solution
+{
 public:
-    int nthUglyNumber(int n, int a, int b, int c) {
-        
+    int nthUglyNumber(int n, int A, int B, int C)
+    {
+        long a = A, b = B, c = C;
+        long ab = a * b / __gcd(a, b);
+        long bc = c * b / __gcd(b, c);
+        long ac = a * c / __gcd(a, c);
+        long abc = a * bc / __gcd(a, bc);
+
+        long low = 1, high = 2e9;
+        while (low < high)
+        {
+            long mid = (low + high) / 2;
+            int cnt = mid / a + mid / b + mid / c - mid / ac - mid / bc - mid / ab + mid / abc;
+            if (cnt < n)
+            {
+                low = mid + 1;
+            }
+            else
+                high = mid;
+        }
+        return low;
     }
 };
-
