@@ -12,29 +12,35 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-class Solution {
+class Solution
+{
 public:
   map<int, vector<int>> m;
-  vector<vector<int>> verticalOrder(TreeNode *root) {
+  vector<vector<int>> verticalOrder(TreeNode *root)
+  {
     vector<vector<int>> res;
     if (!root)
       return res;
     queue<pair<TreeNode *, int>> q;
     q.push({root, 0});
-    while (!q.empty()) {
-      for (int i = q.size(); i > 0; --i) {
+    while (!q.empty())
+    {
+      for (int i = q.size(); i > 0; --i)
+      {
         int x = q.front().second;
         auto cur = q.front().first;
         q.pop();
         m[x].push_back(cur->val);
         if (cur->left)
           q.push({cur->left, x - 1});
-        if (cur->right) {
+        if (cur->right)
+        {
           q.push({cur->right, x + 1});
         }
       }
     }
-    for (auto &[x, v] : m) {
+    for (auto &[x, v] : m)
+    {
       res.push_back(v);
     }
     return res;
